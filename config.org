@@ -219,12 +219,8 @@
 
 *** Icons
 #+BEGIN_SRC emacs-lisp
-(use-package all-the-icons-dired
-  :ensure t
-  :init (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
-
-(use-package all-the-icons
-      :ensure t)
+  (use-package all-the-icons
+    :if (display-graphic-p))
 #+END_SRC
 
 *** Layout
@@ -300,24 +296,6 @@
       (doom-modeline-mode 1))
 #+END_SRC
 
-**** Modeline Accessories
-***** Display Time & Icon
-#+BEGIN_SRC emacs-lisp
-  (setq display-time-format " %b %d  %l:%M  "
-        display-time-default-load-average nil)
-        (display-time-mode 1)
-#+END_SRC
-
-***** Fancy Battery
-#+BEGIN_SRC emacs-lisp
-  (use-package fancy-battery
-    :ensure t
-    :config
-    (setq fancy-battery-show-percentage t)
-    (setq battery-update-interval 15)
-    (fancy-battery-mode))
-#+END_SRC
-
 *** Font
 #+BEGIN_SRC emacs-lisp
   (add-to-list 'default-frame-alist '(font . "firacode nerd font-13"))
@@ -332,9 +310,6 @@
     (show-paren-mode 1))
 #+END_SRC
 
-** For Html
-#+BEGIN_SRC emacs-lisp
-#+END_SRC
 ** Gmch
 #+BEGIN_SRC emacs-lisp
     (use-package gcmh
@@ -371,17 +346,6 @@
     :ensure t
     :init
     (rainbow-delimiters-mode 1))
-#+END_SRC
-
-** Treemacs
-#+BEGIN_SRC emacs-lisp
-  (use-package treemacs
-    :ensure t
-    :bind (("M-o" . treemacs)
-           ("M-t" . treemacs-select-window))
-    :config
-    (setq treemacs-is-never-other-window t)
-    (setq treemacs-show-hidden-files t))
 #+END_SRC
 
 ** SlideShow
@@ -572,7 +536,7 @@
 *** Windows
 #+BEGIN_SRC emacs-lisp
   "w" '(nil :which-key "window")
-  "wN" '(make-frame :which-key "make frame")
+  "wn" '(make-frame :which-key "make frame")
   "wd" '(delete-other-windows :which-key "delete other window")
   "wc" '(evil-window-delete :which-key "delete window")
   "w-" '(evil-window-split :which-key "split below")
